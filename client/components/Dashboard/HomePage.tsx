@@ -11,11 +11,11 @@ import Loader from "../common/Loader";
 
 const HomePage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { userData, postLoading } = useSelector((state: any) => state.user);
-
+  const { postLoading } = useSelector((state: any) => state.user);
+  const [userData, setUserData] = useState<any[]>([])
   const [secPage, setSecPage] = useState(2);
   const [hasMore, setHasMore] = useState(true);
-
+  
   useEffect(() => {
     fetchReccom();
   }, []);
@@ -27,9 +27,9 @@ const HomePage: React.FC = () => {
     const { payload } = await dispatch(
       callGet({ header: headers, endpoint: `recommendations?cursor=1&limit=10` })
     );
-
-    if (payload?.data?.length === 0 || payload?.data?.length < 10) {
-      setHasMore(false); // Stop fetching if no more data
+    setUserData(payload?.data)
+    if (!payload?.data || payload?.data?.length < 10) {
+      setHasMore(false);
     }
   };
 
@@ -40,16 +40,16 @@ const HomePage: React.FC = () => {
     const { payload } = await dispatch(
       callGet({ header: headers, endpoint: `recommendations?cursor=${secPage}&limit=10` })
     );
-
-    if (payload?.data?.length === 0 || payload?.data?.length < 10) {
+    setUserData([...userData, ...payload?.data]);
+    if (!payload?.data || payload?.data?.length < 10) {
       setHasMore(false);
     } else {
-      setSecPage((prev) => prev + 1); // Increment page for next fetch
+      setSecPage((prev) => prev + 1);
     }
   };
 
   return (
-    <div style={{marginBottom:"50px"}}>
+    <div className="">
       {postLoading && userData.length === 0 ? (
         <Loader />
       ) : (
@@ -64,9 +64,11 @@ const HomePage: React.FC = () => {
             </p>
           }
         >
-          {userData.map((data: any, i: number) => (
-            <RecommendationCard key={i} data={data} i={i} />
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {userData.map((data: any, i: number) => (
+              <RecommendationCard key={i} data={data} i={i} />
+            ))}
+          </div>
         </InfiniteScroll>
       )}
       {!postLoading && userData.length === 0 && (

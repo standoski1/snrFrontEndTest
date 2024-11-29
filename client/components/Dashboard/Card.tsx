@@ -1,13 +1,13 @@
 import ScoreDots from "./Dots";
 
 const RecommendationCard = ({data,i}:{data:any,i:number}) => {
-   
+    console.log(data)
     return (
       <div key={i} className="bg-white mb-3 border border-gray-200 shadow-md rounded-lg p-6 flex flex-col gap-4">
         {/* Header Section */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-4">
-            <div className="bg-blue-100 text-blue-600 p-3 rounded-full">
+            {/* <div className="bg-blue-100 text-blue-600 p-3 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -22,7 +22,7 @@ const RecommendationCard = ({data,i}:{data:any,i:number}) => {
                   d="M9.75 9.75l4.5 4.5m0 0l-4.5 4.5m4.5-4.5l4.5-4.5m-9 9V5.25m9 14.25H9m6 0H9m-3.75 0h11.25m0-14.25H5.25m0 14.25v-14.25M12 5.25v-.75"
                 />
               </svg>
-            </div>
+            </div> */}
             <div>
               <h3 className="text-lg font-semibold text-gray-900">{data?.title}</h3>
               <div className="flex">
@@ -33,20 +33,7 @@ const RecommendationCard = ({data,i}:{data:any,i:number}) => {
             </div>
           </div>
           <button className="text-gray-400 hover:text-gray-600">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 12h12m-6-6v12"
-              />
-            </svg>
+          <svg height="25" viewBox="0 0 48 48" width="25" xmlns="http://www.w3.org/2000/svg"><path d="M41.09 10.45l-2.77-3.36c-.56-.66-1.39-1.09-2.32-1.09h-24c-.93 0-1.76.43-2.31 1.09l-2.77 3.36c-.58.7-.92 1.58-.92 2.55v25c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4v-25c0-.97-.34-1.85-.91-2.55zm-17.09 24.55l-11-11h7v-4h8v4h7l-11 11zm-13.75-25l1.63-2h24l1.87 2h-27.5z"/><path d="M0 0h48v48h-48z" fill="none"/></svg>
           </button>
         </div>
   

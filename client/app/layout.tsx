@@ -32,19 +32,19 @@ export default function RootLayout({
         <div className="dark:bg-boxdark-2 dark:text-bodydark">
             <Provider store={store}>
               <PersistGate loading={null} persistor={persistor}>
-                <div className="flex h-screen overflow-hidden">
-                  { (headPathName.includes(pathname)) ? null :
+                <div className="flex overflow-hidden">
+                  {/* { (headPathName.includes(pathname)) ? null :
                   <Sidebar
                     sidebarOpen={sidebarOpen}
                     setSidebarOpen={setSidebarOpen}
-                  />}
-                  <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+                  />} */}
+                  <div className="relative flex flex-col">
                     { (headPathName.includes(pathname)) ? null :
                     <Header
                       sidebarOpen={sidebarOpen}
                       setSidebarOpen={setSidebarOpen}
                     />}
-                    <main>
+                    <main className="overflow-y-auto">
                       <div className={`${(widthPathName.includes(pathname)) ? null : "mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10"}`}>
                         {children}
                       </div>
