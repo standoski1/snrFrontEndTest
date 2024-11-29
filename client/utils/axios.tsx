@@ -1,7 +1,7 @@
 import axios from "axios";
 import https from "https";
 
-export const axiosInstance = axios.create({
+const axiosInstance = axios.create({
   baseURL: process.env.baseURL || "http://localhost:3001/",
   timeout: 360000,
   httpsAgent: new https.Agent({ keepAlive: true }),
@@ -10,7 +10,10 @@ export const axiosInstance = axios.create({
 // Request interceptor to include Authorization header
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("accessToken");
+    const storedData = localStorage.getItem("persist:test");
+    // @ts-ignore
+    const parsedData = JSON.parse(storedData); 
+    const token = parsedData.accessToken; 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -33,3 +36,5 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export {axiosInstance}
