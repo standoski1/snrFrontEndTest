@@ -14,6 +14,7 @@ async function testServer() {
 
     // Test 2: Archive a recommendation
     console.log('2. Testing POST /recommendations/:id/archive');
+    // @ts-ignore
     const recommendationId = recommendationsData.data[0].recommendationId;
     const archive = await fetch(`${BASE_URL}/recommendations/${recommendationId}/archive`, {
       method: 'POST'
@@ -51,10 +52,12 @@ async function testServer() {
     console.log('Response:', JSON.stringify(loginData, null, 2), '\n');
 
     // Test 6: Authenticated request
-    if (loginData.token) {
+    // @ts-ignore
+    if (loginData?.token) {
       console.log('6. Testing authenticated GET /recommendations');
       const authed = await fetch(`${BASE_URL}/recommendations`, {
         headers: {
+          // @ts-ignore
           'Authorization': `Bearer ${loginData.token}`
         }
       });
