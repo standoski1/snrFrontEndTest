@@ -159,6 +159,8 @@ Response: {
   };
 }
 
+
+
 // Archive endpoints
 POST /recommendations/{id}/archive
 POST /recommendations/{id}/unarchive
