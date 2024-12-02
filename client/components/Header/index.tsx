@@ -1,12 +1,7 @@
-import Link from "next/link";
 import DarkModeSwitcher from "./DarkModeSwitcher";
-import DropdownMessage from "./DropdownMessage";
-import DropdownNotification from "./DropdownNotification";
 import DropdownUser from "./DropdownUser";
-import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/redux/store";
-import { useState } from "react";
 import { updateUser } from "@/redux/userSlice";
 import Filter from "./Filter";
 
